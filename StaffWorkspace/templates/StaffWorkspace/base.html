@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mas Trade International Garments LTD.</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="{% static 'StaffWorkspace/img/favicon.png' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'StaffWorkspace/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'StaffWorkspace/css/base.css' %}">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="{% static 'StaffWorkspace/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    {% block extraCSS %}{% endblock %}
+    <noscript>
+        <style type="text/css">
+            .container {
+                color: #c1c1c1;
+            }
+
+            .alert {
+                display: block;
+            }
+
+            .submitButton {
+                display: none;
+            }
+
+        </style>
+    </noscript>
+</head>
+<body>
+<div class="header">
+    <a href="{% url 'home' %}">
+        <image class="img-fluid" src="{% static 'StaffWorkspace/img/logo.png' %}"
+               alt="Mas Trade International LTD. Logo">
+            {# This is for back button #}
+            {% if back_button %}
+            {% else %}
+                <div style="float: left; margin-left: 50px; margin-top: 7px;">
+                    <a href="javascript:history.go(-1)">
+                        <i class='fas fa-arrow-circle-left' style='font-size:50px'></i> </a>
+                </div>
+
+            {% endif %}
+    </a>
+</div>
+<!-- Dropdown code -->
+{% if category_dropdown %}
+{% else %}
+    <div class="dropdown mt-15 ml-5 ">
+        <button class="btn btn-secondary dropdown-toggle bg-warning text-dark font-weight-bold" type="button"
+                id="dropdownMenu2"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {% for catagory in category_for_dropdown %}
+                <button class="dropdown-item" type="button">
+                    <a href="{% url 'input_form' catagory.name %}">{{catagory.name}}</a>
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<div class="alert">
+    <strong>Danger!</strong> Do not submit any data. Reset your browser or <a href="https://www.enable-javascript.com/"
+                                                                              target="_blank" style="color: white;"><u>enable
+    JavaScript.</u> </a>
+</div>
+{% block content %}
+{% endblock %}
+
+<div class="footer">
+    <br/>
+    <p>Factory: Helal Complex, Plot No. 72, Bypass Biswa Road, Mogarkhal, Gazipur-1707, Bangladesh<br>
+        Tel: +880-2-9261047-48, Faz: 880-2-9261062, 9261126, Email: info@mastradebd.com<br>
+        Cell No.: +88 01678-667407 or 01618667434 or 01678-667415</p>
+    <p>
+        <span>&nbsp;&nbsp; Developed By: Tech Spider &nbsp;&nbsp;</span>
+    </p>
+</div>
+
+
+</body>
+</html>
